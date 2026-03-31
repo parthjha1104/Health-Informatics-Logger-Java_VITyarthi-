@@ -57,3 +57,53 @@ This project demonstrates how software engineering principles can be applied to 
 
 ### 1. Body Mass Index (BMI)
 
+| Category | Range |
+|--------|------|
+| Underweight | < 18.5 |
+| Normal | 18.5 – 24.9 |
+| Overweight | 25 – 29.9 |
+| Obese | ≥ 30 |
+
+---
+
+### 2. Blood Pressure (AHA/ACC 2025)
+
+| Category | Systolic | Diastolic |
+|----------|---------|----------|
+| Normal | <120 | <80 |
+| Elevated | 120–129 | <80 |
+| Stage 1 | 130–139 | 80–89 |
+| Stage 2 | ≥140 | ≥90 |
+| Severe | >180 | >120 |
+
+> Uses **max-risk logic** (higher category dominates)
+
+---
+
+### 3. Heart Rate (Karvonen Formula)
+
+---
+
+### 4. Blood Glucose
+
+| Category | Fasting | Postprandial |
+|----------|--------|-------------|
+| Normal | <100 | <140 |
+| Prediabetes | 100–125 | 140–199 |
+| Diabetes | ≥126 | ≥200 |
+
+---
+
+## 📈 Data Processing (Java Streams)
+
+Example: 7-day average heart rate
+
+```java
+double avgHeartRate = records.stream()
+    .filter(r -> r.timestamp().isAfter(LocalDateTime.now().minusDays(7)))
+    .mapToInt(HeartRateRecord::bpm)
+    .average()
+    .orElse(0.0);
+
+    
+
